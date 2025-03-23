@@ -1,44 +1,11 @@
-// Run the script : node script.js
-// ----------- Script #1
+// Run the script using node script.js
 
-// const axios = require("axios");
+import { get } from "axios";
 
-// const API_URL = "http://35.200.185.69:8000/v1/autocomplete";
-// const API_KEY = "YOUR_API_KEY";
+// API url
+const API_URL = "http://35.200.185.69:8000/v1/autocomplete";
 
-// async function fetchSuggestions() {
-//   const prefixes = ["a", "b", "c", "d"];
-//   const results = new Set();
-
-//   for (const prefix of prefixes) {
-//     try {
-//       const response = await axios.get(API_URL, {
-//         params: { query: prefix },
-//         // headers: { Authorization: `Bearer ${API_KEY}` },
-//       });
-
-//       if (response.status === 200 && response.data.results) {
-//         response.data.results.forEach((suggestion) => results.add(suggestion));
-//       }
-//     } catch (error) {
-//       console.error(`Error fetching suggestions for prefix "${prefix}":`, error.message);
-//     }
-//   }
-
-//   console.log("Extracted Names:", Array.from(results));
-// }
-
-// fetchSuggestions();
-
-
-// ----------------- Script #2
-
-const axios = require("axios");
-
-// API configuration
-const API_URL = "http://35.200.185.69:8000/v2/autocomplete"; // Replace with the actual API endpoint
-
-// Initialize a counter for the number of requests made
+// Counter for the number of requests
 let requestCount = 0;
 
 // Function to query the autocomplete API
@@ -46,7 +13,7 @@ async function queryAutocompleteAPI(prefix) {
   try {
     // Increment the request counter each time the API is called
     requestCount++;
-    const response = await axios.get(API_URL, {
+    const response = await get(API_URL, {
       params: { query: prefix },
     });
 
