@@ -33,11 +33,11 @@ Api Response Structure : MISSING QUERY
 ![image](https://github.com/user-attachments/assets/eebb9945-66cb-403e-956b-8440ada8b940)
 
 Total number of Requests : 
-- v1 :
-- v2 :
-- v3 :
+- v1 : 286
+- v2 : 383
+- v3 : 437
 
-Total number of extracted names : 
-- v1 :
-- v2 :
-- v3 :
+Total number of unique extracted names : 
+- v1 : 260
+- v2 : 357
+- v3 : 411
