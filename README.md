@@ -41,3 +41,20 @@ Total number of unique extracted names :
 - v1 : 260
 - v2 : 357
 - v3 : 411
+
+**Applying Rate-Limiting**
+Added necessary time delay before each request to the API is made. Approximate delay times :
+- v1 : 1500ms
+- v2 : 1500ms
+- v3 : 1000ms
+  
+**Queries with numbers**
+Total number of Requests (with numbers): 
+- v1 : 10
+- v2 : 145
+- v3 : 169
+
+Total number of unique extracted names (with numbers) : 
+- v1 : 0
+- v2 : 135
+- v3 : 159
