@@ -1,9 +1,9 @@
 // Run the script using node script.js
 
-import { get } from "axios";
+const axios = require("axios");
 
 // API Endpoint URL
-const API_URL = "http://35.200.185.69:8000/v1/autocomplete";
+const API_URL = "http://35.200.185.69:8000/v3/autocomplete";
 
 // Counter for the number of requests
 let requestCount = 0;
@@ -13,7 +13,7 @@ async function queryAutocompleteAPI(prefix) {
   try {
     // Increment the request counter each time the API is called
     requestCount++;
-    const response = await get(API_URL, {
+    const response = await axios.get(API_URL, {
       params: { query: prefix },
     });
 
@@ -31,7 +31,7 @@ async function queryAutocompleteAPI(prefix) {
 // Function to extract all possible names
 async function extractAllNames() {
   const results = new Set(); // To store unique names
-  const queue = [""]; // BFS queue; starts with an empty prefix
+  const queue = "abcdefghijklmnopqrstuvwxyz".split("");; // starts with all alphabets
 
 
   while (queue.length > 0) {
@@ -41,12 +41,6 @@ async function extractAllNames() {
     suggestions.forEach((name) => {
       if (!results.has(name)) {
         results.add(name);
-
-        // For every suggestion, if the name starts with the current prefix, 
-        // it’s added to the queue to explore deeper.
-        if (name.startsWith(prefix)) {
-          queue.push(name);
-        }
       }
     });
 
