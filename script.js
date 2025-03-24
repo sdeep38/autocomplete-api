@@ -3,7 +3,7 @@
 const axios = require("axios");
 
 // API Endpoint URL
-const API_URL = "http://35.200.185.69:8000/v3/autocomplete";
+const API_URL = "http://35.200.185.69:8000/v2/autocomplete";
 
 // Counter for the number of requests
 let requestCount = 0;
@@ -39,7 +39,7 @@ async function queryAutocompleteAPI(prefix, delayInMs) {
 // Function to extract all possible names
 async function extractAllNames(rateLimitInMs = 500) {
   const results = new Set(); // To store unique names
-  const queue = "abcdefghijklmnopqrstuvwxyz".split("");; // starts with all alphabets
+  const queue = "abcdefghijklmnopqrstuvwxyz0123456789".split("");; // starts with all alphabets
 
 
   while (queue.length > 0) {
@@ -67,7 +67,7 @@ async function extractAllNames(rateLimitInMs = 500) {
 
 // Main function
 (async () => {
-  const rateLimitInMs = 1000; // Adjust rate limit in milliseconds
+  const rateLimitInMs = 1500; // Adjust rate limit in milliseconds
   const allNames = await extractAllNames(rateLimitInMs);
   console.log("Total suggestions:", allNames.length);
   console.log("Total Number of Requests Made:", requestCount);
