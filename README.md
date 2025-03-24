@@ -31,3 +31,30 @@ Api Response Structure : SUCCESS
 
 Api Response Structure : MISSING QUERY
 ![image](https://github.com/user-attachments/assets/eebb9945-66cb-403e-956b-8440ada8b940)
+
+Total number of Requests : 
+- v1 : 286
+- v2 : 383
+- v3 : 437
+
+Total number of unique extracted names : 
+- v1 : 260
+- v2 : 357
+- v3 : 411
+
+**Applying Rate-Limiting** :
+Added necessary time delay before each request to the API is made. Approximate delay times :
+- v1 : 1500ms
+- v2 : 1500ms
+- v3 : 1000ms
+  
+**Queries with numbers** :
+Total number of Requests (with numbers): 
+- v1 : 10
+- v2 : 145
+- v3 : 169
+
+Total number of unique extracted names (with numbers) : 
+- v1 : 0
+- v2 : 135
+- v3 : 159
