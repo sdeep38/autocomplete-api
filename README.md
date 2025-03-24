@@ -26,6 +26,8 @@ This project demonstrates an efficient algorithm to query an autocomplete API re
 
 - Tracks processed prefixes, the number of suggestions found, and the total requests made.
 ## My Findings
+Api Response Structure : SUCCESS
+![api-response-structure](https://github.com/user-attachments/assets/b59b7a2f-0efe-4d93-acdd-12dd50352501)
 
-![Api Response Structure]
-
+Api Response Structure : MISSING QUERY
+![image](https://github.com/user-attachments/assets/eebb9945-66cb-403e-956b-8440ada8b940)
