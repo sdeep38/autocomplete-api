@@ -8,9 +8,17 @@ const API_URL = "http://35.200.185.69:8000/v3/autocomplete";
 // Counter for the number of requests
 let requestCount = 0;
 
-// Function to query the autocomplete API
-async function queryAutocompleteAPI(prefix) {
+// Helper function to add delay (rate-limiting)
+function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+// Function to query the autocomplete API with rate-limiting
+async function queryAutocompleteAPI(prefix, delayInMs) {
   try {
+    // Add delay to enforce rate-limiting
+    if (delayInMs) await delay(delayInMs);
+
     // Increment the request counter each time the API is called
     requestCount++;
     const response = await axios.get(API_URL, {
@@ -29,18 +37,24 @@ async function queryAutocompleteAPI(prefix) {
 }
 
 // Function to extract all possible names
-async function extractAllNames() {
+async function extractAllNames(rateLimitInMs = 500) {
   const results = new Set(); // To store unique names
   const queue = "abcdefghijklmnopqrstuvwxyz".split("");; // starts with all alphabets
 
 
   while (queue.length > 0) {
     const prefix = queue.shift(); // Dequeue a prefix
-    const suggestions = await queryAutocompleteAPI(prefix); // Query the API with the prefix
+    const suggestions = await queryAutocompleteAPI(prefix, rateLimitInMs); // Query the API with the prefix and with delay
 
     suggestions.forEach((name) => {
       if (!results.has(name)) {
         results.add(name);
+
+        // Add next-level prefixes to the queue
+        if (name.startsWith(prefix)) {
+          queue.push(name);
+        }
+
       }
     });
 
@@ -53,8 +67,9 @@ async function extractAllNames() {
 
 // Main function
 (async () => {
-  const allNames = await extractAllNames();
-  console.log("All Extracted Names:", allNames);
+  const rateLimitInMs = 1000; // Adjust rate limit in milliseconds
+  const allNames = await extractAllNames(rateLimitInMs);
+  console.log("Total suggestions:", allNames.length);
   console.log("Total Number of Requests Made:", requestCount);
 })();
 
